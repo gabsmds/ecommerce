@@ -37,6 +37,7 @@ header {
 nav ul {
     display: flex;
     list-style: none;
+    align-items: center;
 }
 
 nav ul li {
@@ -49,6 +50,61 @@ nav ul li a {
     text-decoration: none;
     font-weight: 500;
     cursor: pointer;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #f0f0f0;
+}
+
+/* Dropdown menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.dropdown-menu li {
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu a {
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+    transition: all 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background-color: #ff6b98;
+    color: white;
+}
+
+#user-greeting {
+    font-weight: bold;
+    color: white;
+    margin-left: 20px;
+}
+
+#logout-btn {
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#logout-btn:hover {
+    color: #f0f0f0;
 }
 
 .search-bar {
@@ -59,43 +115,59 @@ nav ul li a {
 .search-bar input {
     padding: 10px;
     width: 300px;
-    border: 1px solid #ddd;
+    border: 1px solid #ff6b98;
     border-radius: 4px 0 0 4px;
+    outline: none;
 }
 
 .search-bar button {
     padding: 10px 15px;
-    background-color: #333;
+    background-color: #ff6b98;
     color: white;
     border: none;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #e0557e;
 }
 
 .categories {
     display: flex;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .category-btn {
     padding: 8px 15px;
-    margin-right: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    background-color: #ff6b98;
+    color: white;
+    border: none;
+    border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s;
+    font-weight: bold;
 }
 
 .category-btn:hover {
-    background-color: #ff6b98;
-    color: white;
-    border-color: #ff6b98;
+    background-color: #e0557e;
+    transform: translateY(-2px);
+}
+
+.category-btn[data-category="todos"] {
+    background-color: #333;
+}
+
+.category-btn[data-category="todos"]:hover {
+    background-color: #555;
 }
 
 .products {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 }
 
@@ -115,6 +187,7 @@ nav ul li a {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    background-color: #f1f1f1;
 }
 
 .product-info {
@@ -151,7 +224,7 @@ nav ul li a {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 100;
     left: 0;
     top: 0;
     width: 100%;
@@ -162,9 +235,10 @@ nav ul li a {
 .modal-content {
     background-color: white;
     margin: 15% auto;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
-    width: 300px;
+    width: 350px;
+    position: relative;
 }
 
 .close {
@@ -173,6 +247,9 @@ nav ul li a {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 5px;
 }
 
 .close:hover {
@@ -186,33 +263,97 @@ nav ul li a {
 .form-group label {
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .form-group input {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 16px;
 }
 
 .login-btn {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #ff6b98;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 .login-btn:hover {
     background-color: #e0557e;
 }
 
-footer {
+.secondary-btn {
+    width: 100%;
+    padding: 12px;
     background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.secondary-btn:hover {
+    background-color: #555;
+}
+
+.text-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    color: #ff6b98;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+footer {
+    background-color: #ff6b98;
     color: white;
     text-align: center;
     padding: 20px 0;
     margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+    }
+    
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 5px 10px;
+    }
+    
+    .search-bar input {
+        width: 200px;
+    }
+    
+    .products {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .dropdown-menu {
+        right: auto;
+        left: 0;
+    }
 }

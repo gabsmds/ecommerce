@@ -12,11 +12,19 @@
             <div class="logo">Gab's Style</div>
             <nav>
                 <ul>
-                    <li><a class="category-link" data-category="vestidos">Vestidos</a></li>
-                    <li><a class="category-link" data-category="saias">Saias</a></li>
-                    <li><a class="category-link" data-category="blusas">Blusas</a></li>
-                    <li><a class="category-link" data-category="calcas">Calças</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Menu</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="category-link" data-category="todos">Todos</a></li>
+                            <li><a class="category-link" data-category="vestidos">Vestidos</a></li>
+                            <li><a class="category-link" data-category="saias">Saias</a></li>
+                            <li><a class="category-link" data-category="blusas">Blusas</a></li>
+                            <li><a class="category-link" data-category="calcas">Calças</a></li>
+                        </ul>
+                    </li>
                     <li><a id="login-btn">Login</a></li>
+                    <li><a id="logout-btn" style="display: none;">Sair</a></li>
+                    <li id="user-greeting" style="display: none;"></li>
                 </ul>
             </nav>
         </div>
@@ -28,16 +36,72 @@
             <button id="search-btn">Buscar</button>
         </div>
         
-        <div class="categories">
-            <button class="category-btn" data-category="todos">Todos</button>
-            <button class="category-btn" data-category="vestidos">Vestidos</button>
-            <button class="category-btn" data-category="saias">Saias</button>
-            <button class="category-btn" data-category="blusas">Blusas</button>
-            <button class="category-btn" data-category="calcas">Calças</button>
-        </div>
         
         <div class="products" id="products-container">
-            <!-- Produtos serão inseridos via JavaScript -->
+            <div class="product-card" data-category="vestidos">
+                <img src="img/vestido longo.jpg" alt="Vestido Floral" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Vestido Floral</h3>
+                    <p class="product-price">R$ 129.90</p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="vestidos">
+                <img src="img/vestido longo.jpg" alt="Vestido Longo Elegante" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Vestido Longo Elegante</h3>
+                    <p class="product-price">R$ 199.90</p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="saias">
+                <img src="img/saia midi.webp" alt="Saia Midi Plissada" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Saia Midi Plissada</h3>
+                    <p class="product-price">R$ 89.90</p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="saias">
+                <img src="img/saia longa.webp" alt="Saia Jeans" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Saia Jeans</h3>
+                    <p class="product-price">R$ 79.90</p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="blusas">
+                <img src="img/blusa basca.jpg" alt="Blusa Básica Branca" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Blusa Básica Branca</h3>
+                    <p class="product-price">R$ 49.90</p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="blusas">
+                <img src="img/blusa estampada.jpg" alt="Blusa Manga Longa" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Blusa Manga Longa</h3>
+                    <p class="product-price">R$ 69.90</p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="calcas">
+                <img src="img/calça skinny.webp" alt="Calça Jeans Skinny" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Calça Jeans Skinny</h3>
+                    <p class="product-price">R$ 119.90</p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="calcas">
+                <img src="img/calça wide.webp" alt="Calça Wide Leg" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Calça Wide Leg</h3>
+                    <p class="product-price">R$ 139.90</p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
         </div>
     </main>
     
@@ -56,6 +120,8 @@
                     <input type="password" id="password" required>
                 </div>
                 <button type="submit" class="login-btn">Entrar</button>
+                <button type="button" id="register-button" class="secondary-btn">Registrar</button>
+                <button type="button" id="recover-password-button" class="text-btn">Esqueci minha senha</button>
             </form>
         </div>
     </div>
@@ -65,38 +131,206 @@
             <p>&copy; 2023 Gab's Style. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     
-    <script src="script.js"></script>
-
-
-
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js"></script>
-
-
-    <script> 
+    <script>
+        // Firebase configuration
         const firebaseConfig = {
-        apiKey: "AIzaSyA6HUvXjncq6yRuHA-xplT3w4jrnfpKSfk",
-        authDomain: "gab-s-style.firebaseapp.com",
-        projectId: "gab-s-style",
-        storageBucket: "gab-s-style.firebasestorage.app",
-        messagingSenderId: "929936834467",
-        appId: "1:929936834467:web:baafe056b638150f74a416",
-        measurementId: "G-EQ8KDEY2LS"
-      };
+            apiKey: "AIzaSyA6HUvXjncq6yRuHA-xplT3w4jrnfpKSfk",
+            authDomain: "gab-s-style.firebaseapp.com",
+            projectId: "gab-s-style",
+            storageBucket: "gab-s-style.firebasestorage.app",
+            messagingSenderId: "929936834467",
+            appId: "1:929936834467:web:baafe056b638150f74a416"
+        };
 
-      firebase.initializeApp(firebaseConfig);
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
 
-        firebase.auth()
-        .signInWithEmailAndPassword("test@gmail.com", "123456")
-        .then(response => {
-            console.log('success', response)
-        }).catch(error => {
-            console.log('error', error)
+        // DOM Elements
+        const productsContainer = document.getElementById('products-container');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const categoryLinks = document.querySelectorAll('.category-link');
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const loginBtn = document.getElementById('login-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+        const userGreeting = document.getElementById('user-greeting');
+        const loginModal = document.getElementById('login-modal');
+        const closeBtn = document.querySelector('.close');
+        const loginForm = document.getElementById('login-form');
+        const registerButton = document.getElementById('register-button');
+        const recoverPasswordButton = document.getElementById('recover-password-button');
+
+        // Filter products by category
+        function filterProducts(category) {
+            if (category === 'todos') {
+                document.querySelectorAll('.product-card').forEach(card => {
+                    card.style.display = 'block';
+                });
+            } else {
+                document.querySelectorAll('.product-card').forEach(card => {
+                    card.style.display = 'none';
+                });
+                document.querySelectorAll(`.product-card[data-category="${category}"]`).forEach(product => {
+                    product.style.display = 'block';
+                });
+            }
+        }
+
+        // Category buttons event listeners
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterProducts(btn.dataset.category);
+            });
         });
 
+        // Category links in dropdown event listeners
+        categoryLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                filterProducts(link.dataset.category);
+                document.querySelector('.dropdown-menu').style.display = 'none';
+            });
+        });
 
+        // Search products
+        searchBtn.addEventListener('click', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            if (searchTerm) {
+                document.querySelectorAll('.product-card').forEach(card => {
+                    const title = card.querySelector('.product-title').textContent.toLowerCase();
+                    card.style.display = title.includes(searchTerm) ? 'block' : 'none';
+                });
+            } else {
+                filterProducts('todos');
+            }
+        });
+
+        // Login modal
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'block';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // Login with Firebase
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    updateUIForLoggedInUser(userCredential.user);
+                    loginModal.style.display = 'none';
+                    loginForm.reset();
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        });
+
+        // Register new user
+        registerButton.addEventListener('click', () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                alert('Por favor, preencha todos os campos para se registrar.');
+                return;
+            }
+            
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert('Conta criada com sucesso!');
+                    updateUIForLoggedInUser(userCredential.user);
+                    loginModal.style.display = 'none';
+                    loginForm.reset();
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        });
+
+        // Password recovery
+        recoverPasswordButton.addEventListener('click', () => {
+            const email = document.getElementById('email').value;
+            
+            if (!email) {
+                alert('Por favor, insira seu e-mail para recuperar a senha.');
+                return;
+            }
+            
+            auth.sendPasswordResetEmail(email)
+                .then(() => {
+                    alert('E-mail de recuperação enviado! Verifique sua caixa de entrada.');
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        });
+
+        // Logout
+        logoutBtn.addEventListener('click', () => {
+            auth.signOut();
+        });
+
+        // Update UI for logged in user
+        function updateUIForLoggedInUser(user) {
+            const username = user.email.split('@')[0];
+            userGreeting.textContent = `Olá, ${username}`;
+            userGreeting.style.display = 'block';
+            loginBtn.style.display = 'none';
+            logoutBtn.style.display = 'block';
+        }
+
+        // Update UI for logged out user
+        function updateUIForLoggedOutUser() {
+            userGreeting.style.display = 'none';
+            loginBtn.style.display = 'block';
+            logoutBtn.style.display = 'none';
+        }
+
+        // Auth state observer
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                updateUIForLoggedInUser(user);
+            } else {
+                updateUIForLoggedOutUser();
+            }
+        });
+
+        // Dropdown menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            dropdownToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown')) {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+        });
     </script>
-
 </body>
 </html>
