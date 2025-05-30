@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gab's Style - Moda Feminina</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Gab's Style</div>
+            <nav>
+                <ul>
+                    <li><a class="category-link" data-category="vestidos">Vestidos</a></li>
+                    <li><a class="category-link" data-category="saias">Saias</a></li>
+                    <li><a class="category-link" data-category="blusas">Blusas</a></li>
+                    <li><a class="category-link" data-category="calcas">Calças</a></li>
+                    <li><a id="login-btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Pesquisar produtos...">
+            <button id="search-btn">Buscar</button>
+        </div>
+        
+        <div class="categories">
+            <button class="category-btn" data-category="todos">Todos</button>
+            <button class="category-btn" data-category="vestidos">Vestidos</button>
+            <button class="category-btn" data-category="saias">Saias</button>
+            <button class="category-btn" data-category="blusas">Blusas</button>
+            <button class="category-btn" data-category="calcas">Calças</button>
+        </div>
+        
+        <div class="products" id="products-container">
+            <!-- Produtos serão inseridos via JavaScript -->
+        </div>
+    </main>
+    
+    <!-- Modal de Login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">Entrar</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Gab's Style. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js"></script>
+
+
+    <script> 
+        const firebaseConfig = {
+        apiKey: "AIzaSyA6HUvXjncq6yRuHA-xplT3w4jrnfpKSfk",
+        authDomain: "gab-s-style.firebaseapp.com",
+        projectId: "gab-s-style",
+        storageBucket: "gab-s-style.firebasestorage.app",
+        messagingSenderId: "929936834467",
+        appId: "1:929936834467:web:baafe056b638150f74a416",
+        measurementId: "G-EQ8KDEY2LS"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+        firebase.auth()
+        .signInWithEmailAndPassword("test@gmail.com", "123456")
+        .then(response => {
+            console.log('success', response)
+        }).catch(error => {
+            console.log('error', error)
+        });
+
+
+    </script>
+
+</body>
+</html>
