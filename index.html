@@ -4,7 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gab's Style - Moda Feminina</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos para o menu dropdown aninhado */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown-menu li {
+            padding: 12px 16px;
+            display: block;
+        }
+        
+        .dropdown-menu li:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .dropdown-submenu {
+            position: relative;
+        }
+        
+        .dropdown-submenu .dropdown-submenu-content {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown-submenu:hover .dropdown-submenu-content {
+            display: block;
+        }
+        
+        .dropdown-toggle::after {
+            content: "▼";
+            font-size: 10px;
+            margin-left: 5px;
+        }
+        
+        .dropdown-submenu > a::after {
+            content: "►";
+            font-size: 10px;
+            margin-left: 5px;
+            float: right;
+        }
+        
+        /* Estilos para as seções de cadastro */
+        .cadastro-section {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cadastro-section h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .cadastro-section input[type="text"],
+        .cadastro-section input[type="email"],
+        .cadastro-section input[type="password"],
+        .cadastro-section input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .cadastro-section input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .cadastro-section input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -20,6 +116,13 @@
                             <li><a class="category-link" data-category="saias">Saias</a></li>
                             <li><a class="category-link" data-category="blusas">Blusas</a></li>
                             <li><a class="category-link" data-category="calcas">Calças</a></li>
+                            <li class="dropdown-submenu">
+                                <a href="#">Cadastrar</a>
+                                <ul class="dropdown-submenu-content">
+                                    <li><a href="#" id="menu-cliente">Cliente</a></li>
+                                    <li><a href="#" id="menu-produto">Produto</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                     <li><a id="login-btn">Login</a></li>
@@ -36,72 +139,31 @@
             <button id="search-btn">Buscar</button>
         </div>
         
-        
         <div class="products" id="products-container">
-            <div class="product-card" data-category="vestidos">
-                <img src="img/vestido longo.jpg" alt="Vestido Floral" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Vestido Floral</h3>
-                    <p class="product-price">R$ 129.90</p>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-            <div class="product-card" data-category="vestidos">
-                <img src="img/vestido longo.jpg" alt="Vestido Longo Elegante" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Vestido Longo Elegante</h3>
-                    <p class="product-price">R$ 199.90</p>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-            <div class="product-card" data-category="saias">
-                <img src="img/saia midi.webp" alt="Saia Midi Plissada" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Saia Midi Plissada</h3>
-                    <p class="product-price">R$ 89.90</p>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-            <div class="product-card" data-category="saias">
-                <img src="img/saia longa.webp" alt="Saia Jeans" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Saia Jeans</h3>
-                    <p class="product-price">R$ 79.90</p>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-            <div class="product-card" data-category="blusas">
-                <img src="img/blusa basca.jpg" alt="Blusa Básica Branca" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Blusa Básica Branca</h3>
-                    <p class="product-price">R$ 49.90</p>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-            <div class="product-card" data-category="blusas">
-                <img src="img/blusa estampada.jpg" alt="Blusa Manga Longa" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Blusa Manga Longa</h3>
-                    <p class="product-price">R$ 69.90</p>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-            <div class="product-card" data-category="calcas">
-                <img src="img/calça skinny.webp" alt="Calça Jeans Skinny" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Calça Jeans Skinny</h3>
-                    <p class="product-price">R$ 119.90</p>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-            <div class="product-card" data-category="calcas">
-                <img src="img/calça wide.webp" alt="Calça Wide Leg" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Calça Wide Leg</h3>
-                    <p class="product-price">R$ 139.90</p>
-                    <button class="add-to-cart">Adicionar ao Carrinho</button>
-                </div>
-            </div>
+            <!-- Products will be loaded here -->
+        </div>
+        
+        <!-- Seção de Cadastro de Cliente -->
+        <div id="cliente-section" class="cadastro-section">
+            <h1>CADASTRO DE CLIENTE</h1>
+            <input type="text" id="cliente-nome" placeholder="Nome Completo" required>
+            <input type="email" id="cliente-email" placeholder="E-mail" required>
+            <input type="text" id="cliente-telefone" placeholder="Telefone">
+            <input type="text" id="cliente-endereco" placeholder="Endereço">
+            <input type="password" id="cliente-senha" placeholder="Senha" required>
+            <input type="submit" id="cadastrar-cliente" value="Cadastrar Cliente">
+        </div>
+        
+        <!-- Seção de Cadastro de Produto -->
+        <div id="produto-section" class="cadastro-section">
+            <h1>CADASTRO DE PRODUTO</h1>
+            <input type="text" id="produto-codigo" placeholder="Código" required>
+            <input type="text" id="produto-nome" placeholder="Nome do Produto" required>
+            <input type="text" id="produto-categoria" placeholder="Categoria" required>
+            <input type="number" id="produto-quantidade" placeholder="Quantidade" required>
+            <input type="text" id="produto-valor" placeholder="Valor do Produto" required>
+            <input type="text" id="produto-imagem" placeholder="URL da Imagem">
+            <input type="submit" id="cadastrar-produto" value="Cadastrar Produto">
         </div>
     </main>
     
@@ -135,6 +197,7 @@
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     
     <script>
         // Firebase configuration
@@ -150,10 +213,10 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
+        const database = firebase.database();
 
         // DOM Elements
         const productsContainer = document.getElementById('products-container');
-        const categoryBtns = document.querySelectorAll('.category-btn');
         const categoryLinks = document.querySelectorAll('.category-link');
         const searchInput = document.getElementById('search-input');
         const searchBtn = document.getElementById('search-btn');
@@ -165,6 +228,130 @@
         const loginForm = document.getElementById('login-form');
         const registerButton = document.getElementById('register-button');
         const recoverPasswordButton = document.getElementById('recover-password-button');
+        
+        // Menu elements
+        const menuCliente = document.getElementById('menu-cliente');
+        const menuProduto = document.getElementById('menu-produto');
+        const clienteSection = document.getElementById('cliente-section');
+        const produtoSection = document.getElementById('produto-section');
+        
+        // Cadastro de Cliente elements
+        const cadastrarClienteBtn = document.getElementById('cadastrar-cliente');
+        
+        // Cadastro de Produto elements
+        const cadastrarProdutoBtn = document.getElementById('cadastrar-produto');
+
+        // Mostrar/ocultar seções de cadastro
+        menuCliente.addEventListener('click', function(e) {
+            e.preventDefault();
+            produtoSection.style.display = 'none';
+            clienteSection.style.display = clienteSection.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        menuProduto.addEventListener('click', function(e) {
+            e.preventDefault();
+            clienteSection.style.display = 'none';
+            produtoSection.style.display = produtoSection.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Cadastrar Cliente
+        cadastrarClienteBtn.addEventListener('click', function() {
+            const nome = document.getElementById('cliente-nome').value;
+            const email = document.getElementById('cliente-email').value;
+            const telefone = document.getElementById('cliente-telefone').value;
+            const endereco = document.getElementById('cliente-endereco').value;
+            const senha = document.getElementById('cliente-senha').value;
+            
+            // Criar usuário no Authentication
+            auth.createUserWithEmailAndPassword(email, senha)
+                .then((userCredential) => {
+                    // Salvar dados adicionais no Realtime Database
+                    const userId = userCredential.user.uid;
+                    const userRef = database.ref('clientes/' + userId);
+                    
+                    userRef.set({
+                        nome: nome,
+                        email: email,
+                        telefone: telefone,
+                        endereco: endereco
+                    }).then(() => {
+                        alert('Cliente cadastrado com sucesso!');
+                        // Limpar campos
+                        document.getElementById('cliente-nome').value = '';
+                        document.getElementById('cliente-email').value = '';
+                        document.getElementById('cliente-telefone').value = '';
+                        document.getElementById('cliente-endereco').value = '';
+                        document.getElementById('cliente-senha').value = '';
+                    });
+                })
+                .catch((error) => {
+                    alert('Erro ao cadastrar cliente: ' + error.message);
+                });
+        });
+
+        // Cadastrar Produto
+        cadastrarProdutoBtn.addEventListener('click', function() {
+            const codigo = document.getElementById('produto-codigo').value;
+            const nome = document.getElementById('produto-nome').value;
+            const categoria = document.getElementById('produto-categoria').value;
+            const quantidade = document.getElementById('produto-quantidade').value;
+            const valor = document.getElementById('produto-valor').value;
+            const imagem = document.getElementById('produto-imagem').value;
+            
+            const produtoRef = database.ref('produtos/' + codigo);
+            
+            produtoRef.set({
+                codigo: codigo,
+                nome: nome,
+                categoria: categoria,
+                quantidade: quantidade,
+                valor: valor,
+                imagem: imagem || 'img/default-product.jpg'
+            }).then(() => {
+                alert('Produto cadastrado com sucesso!');
+                // Limpar campos
+                document.getElementById('produto-codigo').value = '';
+                document.getElementById('produto-nome').value = '';
+                document.getElementById('produto-categoria').value = '';
+                document.getElementById('produto-quantidade').value = '';
+                document.getElementById('produto-valor').value = '';
+                document.getElementById('produto-imagem').value = '';
+                
+                // Atualizar lista de produtos
+                loadProducts();
+            }).catch((error) => {
+                alert('Erro ao cadastrar produto: ' + error.message);
+            });
+        });
+
+        // Carregar produtos do Firebase
+        function loadProducts() {
+            const produtosRef = database.ref('produtos');
+            
+            produtosRef.on('value', (snapshot) => {
+                productsContainer.innerHTML = '';
+                const produtos = snapshot.val();
+                
+                for (const codigo in produtos) {
+                    const produto = produtos[codigo];
+                    
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.dataset.category = produto.categoria.toLowerCase();
+                    
+                    productCard.innerHTML = `
+                        <img src="${produto.imagem || 'img/default-product.jpg'}" alt="${produto.nome}" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">${produto.nome}</h3>
+                            <p class="product-price">R$ ${parseFloat(produto.valor).toFixed(2)}</p>
+                            <button class="add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    `;
+                    
+                    productsContainer.appendChild(productCard);
+                }
+            });
+        }
 
         // Filter products by category
         function filterProducts(category) {
@@ -182,14 +369,7 @@
             }
         }
 
-        // Category buttons event listeners
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterProducts(btn.dataset.category);
-            });
-        });
-
-        // Category links in dropdown event listeners
+        // Category links event listeners
         categoryLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -212,109 +392,6 @@
             }
         });
 
-        // Login modal
-        loginBtn.addEventListener('click', () => {
-            loginModal.style.display = 'block';
-        });
-
-        closeBtn.addEventListener('click', () => {
-            loginModal.style.display = 'none';
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                loginModal.style.display = 'none';
-            }
-        });
-
-        // Login with Firebase
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    updateUIForLoggedInUser(userCredential.user);
-                    loginModal.style.display = 'none';
-                    loginForm.reset();
-                })
-                .catch((error) => {
-                    alert(error.message);
-                });
-        });
-
-        // Register new user
-        registerButton.addEventListener('click', () => {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            if (!email || !password) {
-                alert('Por favor, preencha todos os campos para se registrar.');
-                return;
-            }
-            
-            auth.createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    alert('Conta criada com sucesso!');
-                    updateUIForLoggedInUser(userCredential.user);
-                    loginModal.style.display = 'none';
-                    loginForm.reset();
-                })
-                .catch((error) => {
-                    alert(error.message);
-                });
-        });
-
-        // Password recovery
-        recoverPasswordButton.addEventListener('click', () => {
-            const email = document.getElementById('email').value;
-            
-            if (!email) {
-                alert('Por favor, insira seu e-mail para recuperar a senha.');
-                return;
-            }
-            
-            auth.sendPasswordResetEmail(email)
-                .then(() => {
-                    alert('E-mail de recuperação enviado! Verifique sua caixa de entrada.');
-                })
-                .catch((error) => {
-                    alert(error.message);
-                });
-        });
-
-        // Logout
-        logoutBtn.addEventListener('click', () => {
-            auth.signOut();
-        });
-
-        // Update UI for logged in user
-        function updateUIForLoggedInUser(user) {
-            const username = user.email.split('@')[0];
-            userGreeting.textContent = `Olá, ${username}`;
-            userGreeting.style.display = 'block';
-            loginBtn.style.display = 'none';
-            logoutBtn.style.display = 'block';
-        }
-
-        // Update UI for logged out user
-        function updateUIForLoggedOutUser() {
-            userGreeting.style.display = 'none';
-            loginBtn.style.display = 'block';
-            logoutBtn.style.display = 'none';
-        }
-
-        // Auth state observer
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                updateUIForLoggedInUser(user);
-            } else {
-                updateUIForLoggedOutUser();
-            }
-        });
-
         // Dropdown menu functionality
         document.addEventListener('DOMContentLoaded', function() {
             const dropdownToggle = document.querySelector('.dropdown-toggle');
@@ -331,6 +408,9 @@
                 }
             });
         });
+
+        // Inicializar carregando os produtos
+        loadProducts();
     </script>
 </body>
 </html>
